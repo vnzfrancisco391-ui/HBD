@@ -1,0 +1,410 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Great Vibes', 'Dancing Script', 'Georgia', cursive;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ========== PHOTO COLLAGE BACKGROUND ========== */
+.photo-collage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeInPhotos 2s ease-out 18s forwards;
+}
+
+/* Individual photos */
+.photo {
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  animation: fadeInPhoto 0.8s ease-out forwards;
+}
+
+/* Photo positions and delays */
+.photo-1 {
+  top: 5%;
+  left: 5%;
+  width: 200px;
+  height: 200px;
+  background-image: url('photos/photo1.jpg');
+  animation-delay: 18s;
+}
+
+.photo-2 {
+  top: 15%;
+  right: 8%;
+  width: 180px;
+  height: 240px;
+  background-image: url('photos/photo2.jpg');
+  animation-delay: 18.5s;
+}
+
+.photo-3 {
+  bottom: 20%;
+  left: 10%;
+  width: 220px;
+  height: 180px;
+  background-image: url('photos/photo3.jpg');
+  animation-delay: 19s;
+}
+
+.photo-4 {
+  bottom: 10%;
+  right: 12%;
+  width: 190px;
+  height: 190px;
+  background-image: url('photos/photo4.jpeg');
+  animation-delay: 19.5s;
+}
+
+.photo-5 {
+  top: 40%;
+  left: 20%;
+  width: 160px;
+  height: 160px;
+  background-image: url('photos/photo5.jpeg');
+  animation-delay: 20s;
+}
+
+.photo-6 {
+  top: 50%;
+  right: 20%;
+  width: 200px;
+  height: 170px;
+  background-image: url('photos/photo6.jpeg');
+  animation-delay: 20.5s;
+}
+
+@keyframes fadeInPhotos {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPhoto {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Hover effect - photos become more visible when hovered */
+.photo:hover {
+  opacity: 1 !important;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  z-index: 10;
+  position: relative;
+}
+
+/* Greeting - appears at 1s, fades out at 6s */
+.greeting {
+  font-size: 4rem;
+  font-weight: normal;
+  color: #ff69b4;
+  text-align: center;
+  padding: 0 1rem;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out 1s forwards,
+             fadeOut 0.5s ease-out 6s forwards;
+  text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493, 0 0 30px #ff69b4;
+  position: absolute;
+}
+
+/* I LOVE YOU - appears at 7s, fades out at 12s */
+.iloveyou {
+  font-size: 3rem;
+  font-weight: normal;
+  color: #ff3366;
+  text-align: center;
+  padding: 0 1rem;
+  opacity: 0;
+  animation: fadeInLove 0.8s ease-out 7s forwards,
+             fadeOut 0.5s ease-out 12s forwards;
+  text-shadow: 0 0 15px #ff3366, 0 0 25px #ff1493;
+  position: absolute;
+}
+
+/* Flower container - appears at 13s */
+.flower-container {
+  opacity: 0;
+  animation: fadeInFlower 0.5s ease-out 13s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  z-index: 15;
+  position: relative;
+}
+
+/* SVG Drawing */
+.flower-drawing {
+  width: 100%;
+  height: auto;
+  max-width: 350px;
+  filter: drop-shadow(0 0 5px #ff69b4);
+}
+
+/* Stem - draws upward */
+.stem {
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+  stroke: #4a7c3f;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawStem 1.5s ease-out 13s forwards;
+}
+
+@keyframes drawStem {
+  0% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Leaves - draw after stem */
+.leaf {
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: #5a9e4a;
+  fill-opacity: 0;
+  stroke: #5a9e4a;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  opacity: 0;
+  animation: drawLeaf 1s ease-out forwards;
+}
+
+.leaf-left {
+  animation-delay: 14.5s;
+}
+
+.leaf-right {
+  animation-delay: 15s;
+}
+
+@keyframes drawLeaf {
+  0% {
+    stroke-dashoffset: 200;
+    fill-opacity: 0;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill-opacity: 0.5;
+    opacity: 1;
+  }
+}
+
+/* Tulip flower - outer shape */
+.tulip-flower {
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+  fill: #ff8cab;
+  fill-opacity: 0;
+  stroke: #ff6b8a;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  opacity: 0;
+  animation: drawFlower 1.2s ease-out 15.5s forwards,
+             flowerGlow 1.5s ease-in-out 16.7s infinite;
+}
+
+@keyframes drawFlower {
+  0% {
+    stroke-dashoffset: 200;
+    fill-opacity: 0;
+    opacity: 0;
+  }
+  80% {
+    fill-opacity: 0;
+    opacity: 0.5;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill-opacity: 0.7;
+    opacity: 1;
+  }
+}
+
+/* Petal lines - draw after flower */
+.petal-line {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke: #ff4d73;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  opacity: 0;
+  animation: drawPetalLine 0.8s ease-out forwards;
+}
+
+.petal-left {
+  animation-delay: 16.5s;
+}
+
+.petal-right {
+  animation-delay: 16.7s;
+}
+
+.petal-center {
+  animation-delay: 16.9s;
+}
+
+@keyframes drawPetalLine {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+}
+
+/* Flower glow animation */
+@keyframes flowerGlow {
+  0% {
+    filter: drop-shadow(0 0 2px #ff69b4) drop-shadow(0 0 5px #ff1493);
+    stroke: #ff6b8a;
+  }
+  50% {
+    filter: drop-shadow(0 0 10px #ff69b4) drop-shadow(0 0 20px #ff1493) drop-shadow(0 0 30px #ff3366);
+    stroke: #ff88a8;
+  }
+  100% {
+    filter: drop-shadow(0 0 2px #ff69b4) drop-shadow(0 0 5px #ff1493);
+    stroke: #ff6b8a;
+  }
+}
+
+/* Container ambient glow */
+.flower-container {
+  opacity: 0;
+  animation: fadeInFlower 0.5s ease-out 13s forwards,
+             containerGlow 2s ease-in-out 16.7s infinite;
+}
+
+@keyframes containerGlow {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(255, 105, 180, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 0px rgba(255, 105, 180, 0));
+  }
+}
+
+/* Fade animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInLove {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes fadeInFlower {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .greeting {
+    font-size: 2.5rem;
+  }
+  .iloveyou {
+    font-size: 2rem;
+  }
+  .flower-drawing {
+    max-width: 280px;
+  }
+  .stem {
+    stroke-width: 3;
+  }
+  .leaf {
+    stroke-width: 2.5;
+  }
+  .tulip-flower {
+    stroke-width: 2.5;
+  }
+  .petal-line {
+    stroke-width: 1.5;
+  }
+  
+}
